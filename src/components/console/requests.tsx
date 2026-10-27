@@ -13,6 +13,7 @@ import {
   timestamp,
 } from "@/lib/adapters/evidence";
 import { demoService, requestQuery } from "@/lib/demo/service";
+import { comparisonHref } from "@/lib/adapters/request-comparison";
 import { ArrowLeft, ArrowUpRight, FileCheck2 } from "@/components/ui/icons";
 import { useDemoRead } from "./demo-context";
 import {
@@ -117,7 +118,20 @@ export function RequestsScreen() {
   }
   return (
     <DemoGate>
-      <ConsoleTitle eyebrow="Investigation" title="Requests">
+      <ConsoleTitle
+        eyebrow="Investigation"
+        title="Requests"
+        action={
+          read.data.requests.length >= 2 && (
+            <Link
+              className="button button-secondary"
+              href="/demo/requests/compare"
+            >
+              Compare requests <ArrowUpRight size={14} />
+            </Link>
+          )
+        }
+      >
         <p>Inspect the decision, its evidence, and the limits of each check.</p>
       </ConsoleTitle>
       <form
@@ -280,6 +294,19 @@ export function RequestDetail({ id }: { id: string }) {
       <ConsoleTitle
         eyebrow="Request inspection · Simulated data"
         title={record.id}
+        action={
+          read.data.requests.length >= 2 && (
+            <Link
+              className="button button-secondary"
+              href={comparisonHref(
+                record.id,
+                read.data.requests.find((other) => other.id !== record.id)!.id,
+              )}
+            >
+              Compare this request <ArrowUpRight size={14} />
+            </Link>
+          )
+        }
       >
         <p>{timestamp(record.receivedAt)} · Staging</p>
       </ConsoleTitle>

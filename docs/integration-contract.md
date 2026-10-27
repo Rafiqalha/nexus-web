@@ -67,5 +67,10 @@ idempotency/reconciliation mechanism. No success may be inferred from local
 state changes. The simulated recovery buttons are not connected retry flows.
 
 M2 exports only a bounded, labeled presentation summary of synthetic fields.
+The comparison route uses the same synthetic read adapter and fixed snapshot;
+it adds no connected capability. Paired evidence is aligned by check identity,
+and differences describe displayed fields rather than a security ranking.
+Unknown or repeated query identifiers never select substitute records.
+
 Raw evidence/payload export, credential reveal, revocation, and policy writes
 remain unavailable.

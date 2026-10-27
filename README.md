@@ -17,6 +17,8 @@ M2 console demo starts at `/demo`, with requests and request detail, enrollments
 
 ## Checks
 
+Request investigation also supports `/demo/requests/compare`: choose two synthetic requests, compare scope/transport/evidence, swap sides, or show only differing evidence. Selection and the evidence filter live in the URL and survive reload/history. Missing or repeated identifiers show a recovery state instead of substituting records. This is an M2 investigation increment; M3 connected reads remain unavailable pending the authentication and management API contracts.
+
 ```bash
 npm run lint
 npm run typecheck

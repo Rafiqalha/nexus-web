@@ -227,6 +227,8 @@ Provide a full detail page as the durable destination. A side drawer is optional
 
 Long identifiers may be shortened visually while retaining a copy control for their full safe value. Do not assume digests or identifiers are harmless to expose publicly; follow access control and redaction rules.
 
+Request comparison is available from the request list and detail. Show two explicitly identified synthetic requests side by side on desktop and in paired blocks on narrow screens. Match evidence by check identity; retain unknown values, missing observations, metrics, source, scope, and expiry. Different details do not imply a better decision or security equivalence. Selection, side order, and the differences filter use the URL. Invalid pairs have an explicit recovery state. Keep the shared motion/reduced-motion behavior and persistent simulation label.
+
 ### 9.4 Policies and consequential actions
 
 Default to read-only policy views until real management support exists. A future policy change flow is: edit draft → compare with active version → review scope and conflicts → confirm → await backend result → show updated version and audit reference.

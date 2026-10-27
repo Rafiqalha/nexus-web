@@ -948,6 +948,157 @@
   min-height: 44px;
   font-size: 12px;
 }
+.comparison-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+}
+.comparison-form > div {
+  min-width: 0;
+}
+.comparison-form label:not(.comparison-filter) {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: 12px;
+}
+.comparison-form select {
+  width: 100%;
+  font-size: 12px;
+  text-overflow: ellipsis;
+}
+.comparison-filter {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  width: fit-content;
+  font-size: 12px;
+  cursor: pointer;
+}
+.comparison-filter input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin: 0;
+  accent-color: var(--color-text);
+}
+.comparison-result-bar {
+  margin-block: var(--space-4) var(--space-5);
+}
+.comparison-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+.comparison-context {
+  min-width: 0;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+}
+.comparison-context h2 {
+  font-size: 20px;
+  margin-block: var(--space-3);
+}
+.comparison-context h2 a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+.comparison-context p:not(.eyebrow),
+.comparison-evidence p {
+  font-size: 12px;
+  margin-block: var(--space-4);
+}
+.comparison-facts {
+  margin: var(--space-5) 0 0;
+  font-size: 12px;
+}
+.comparison-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+}
+.comparison-facts dt {
+  color: var(--color-text-muted);
+}
+.comparison-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+.comparison-facts dd a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.comparison-checks {
+  display: grid;
+  gap: var(--space-5);
+}
+.comparison-check {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+.comparison-check > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-subtle);
+}
+.comparison-check h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.comparison-check .comparison-pair {
+  gap: 0;
+}
+.comparison-evidence {
+  min-width: 0;
+  padding: var(--space-5) var(--space-6);
+}
+.comparison-evidence + .comparison-evidence {
+  border-left: 1px solid var(--color-border);
+}
+.comparison-evidence strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+.comparison-evidence .comparison-side {
+  margin: 0 0 var(--space-3);
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+.comparison-invalid {
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  border: 1px solid var(--color-control-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+}
+.comparison-invalid p {
+  margin-block: var(--space-4);
+  font-size: 13px;
+}
 .console-settings-panel {
   max-width: 760px;
   margin-bottom: var(--space-5);
@@ -989,6 +1140,13 @@
   animation: none;
 }
 @media (max-width: 1180px) {
+  .comparison-form {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .comparison-form > button {
+    grid-column: 1 / -1;
+    width: fit-content;
+  }
   .console-shell {
     grid-template-columns: 212px minmax(0, 1fr);
   }
@@ -1072,6 +1230,26 @@
   }
 }
 @media (max-width: 600px) {
+  .comparison-form,
+  .comparison-pair,
+  .comparison-facts > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .comparison-form select {
+    font-size: 16px;
+  }
+  .comparison-context,
+  .comparison-evidence,
+  .comparison-check > header {
+    padding: var(--space-5);
+  }
+  .comparison-facts > div {
+    gap: var(--space-2);
+  }
+  .comparison-evidence + .comparison-evidence {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+  }
   .console-content {
     padding: var(--space-6) var(--space-4);
   }

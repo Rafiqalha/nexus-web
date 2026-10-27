@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   description:
     "Device integrity, session evidence, and server-side verification for sensitive digital interactions.",
   metadataBase: new URL(siteOrigin ?? "http://localhost:3000"),
-  icons: { icon: "/icon.svg" },
 };
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

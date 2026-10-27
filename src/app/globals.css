@@ -32,6 +32,8 @@
   --color-dark-brand: var(--color-brand);
   --color-header: rgb(8 9 10 / 88%);
   --color-ambient: rgb(255 255 255 / 4%);
+  --brand-emblem-filter: none;
+  --brand-emblem-blend: screen;
   --hero-space: 200px;
   --space-1: 4px;
   --space-2: 8px;
@@ -241,21 +243,43 @@ main:focus {
   text-underline-offset: 4px;
 }
 .wordmark {
+  --brand-emblem-size: 32px;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  font-size: 22px;
+  gap: var(--space-3);
+  font-size: 18px;
   font-weight: 510;
-  letter-spacing: -0.04em;
+  line-height: 1;
   color: var(--color-text);
+  white-space: nowrap;
 }
-.wordmark svg {
-  color: var(--color-text);
-  width: 24px;
-  height: 24px;
+.wordmark-name {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
-.wordmark-dot {
-  display: none;
+.brand-emblem {
+  display: block;
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--brand-emblem-size, 32px);
+  height: var(--brand-emblem-size, 32px);
+  overflow: hidden;
+}
+.brand-emblem img {
+  position: absolute;
+  width: 145%;
+  height: 145%;
+  max-width: none;
+  left: -22.5%;
+  top: -23.5%;
+  object-fit: contain;
+  mix-blend-mode: var(--brand-emblem-blend);
+  filter: var(--brand-emblem-filter);
+}
+.site-footer .wordmark {
+  --brand-emblem-size: 40px;
+  gap: var(--space-4);
+  font-size: 20px;
 }
 .site-header {
   border-bottom: 1px solid var(--color-border);
@@ -1450,6 +1474,14 @@ td {
     min-height: 64px;
     justify-content: space-between;
     gap: var(--space-3);
+  }
+  .brand-link .wordmark {
+    --brand-emblem-size: 28px;
+    gap: var(--space-2);
+    font-size: 16px;
+  }
+  .brand-link .wordmark-name {
+    letter-spacing: 0.1em;
   }
   .desktop-nav {
     display: none;

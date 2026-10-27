@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "@/components/ui/icons";
+import { BrandEmblem } from "@/components/ui/brand-emblem";
 import type { ReactNode } from "react";
 
 export function ButtonLink({
@@ -80,23 +81,8 @@ export function AccessCTA() {
 export function Wordmark() {
   return (
     <span className="wordmark">
-      <svg
-        viewBox="0 0 28 28"
-        width="28"
-        height="28"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path
-          d="M5 23V5l18 18V5M5 14h18"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-        />
-        <circle cx="5" cy="14" r="3" fill="currentColor" />
-        <circle cx="23" cy="14" r="3" fill="currentColor" />
-      </svg>
-      Nexus<span className="wordmark-dot">.</span>
+      <BrandEmblem />
+      <span className="wordmark-name">Nexus</span>
     </span>
   );
 }

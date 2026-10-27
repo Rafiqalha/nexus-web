@@ -16,6 +16,7 @@ import {
   RotateCcw,
 } from "@/components/ui/icons";
 import { Wordmark } from "@/components/marketing/shared";
+import { BrandEmblem } from "@/components/ui/brand-emblem";
 import { useDemo } from "./demo-context";
 
 const links = [
@@ -85,7 +86,9 @@ export function DemoShell({ children }: { children: ReactNode }) {
           <Wordmark />
         </Link>
         <div className="console-workspace">
-          <span className="workspace-avatar">N</span>
+          <span className="workspace-avatar">
+            <BrandEmblem />
+          </span>
           <span title={workspace}>
             {workspace}
             <small>Example workspace</small>

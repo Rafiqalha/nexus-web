@@ -104,13 +104,9 @@
   background: var(--color-surface-subtle);
 }
 .playbook-card-bar .wordmark {
-  font-size: 16px;
-  gap: var(--space-2);
-  letter-spacing: -0.035em;
-}
-.playbook-card-bar .wordmark svg {
-  width: 20px;
-  height: 20px;
+  --brand-emblem-size: 22px;
+  font-size: 12px;
+  gap: var(--space-3);
 }
 .playbook-card-title {
   padding-left: var(--space-6);

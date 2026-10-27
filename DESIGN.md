@@ -28,7 +28,7 @@ Linear's rendered palette, font family, heading metrics, navigation height, and 
 
 ## 3. Brand and content voice
 
-Use `Nexus` as the public brand unless the owner supplies a different approved mark. A text wordmark is sufficient for the first release. Do not invent a final trademark, legal entity, or owned domain.
+Use `Nexus` as the public brand. The owner-provided `public/icon/Interlocking Nexus N emblem.png` replaces the provisional line monogram. Keep the original source intact; its presentation frame removes excess canvas without redrawing the emblem. Pair it with an uppercase, widely spaced Inter wordmark, consistent optical sizing, and generous clear space. The mark is white on dark surfaces and inverted on light console surfaces. Mobile headers use a smaller lockup while retaining the accessible home-link name. Favicon, Apple icon, and social preview use the same supplied emblem. This does not assert trademark registration, a legal entity, or domain ownership.
 
 Voice: confident, concrete, concise. Prefer “Inspect the evidence behind a request” to “Revolutionary next-generation human trust platform.” Explain specialized terms when they first matter.
 

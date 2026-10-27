@@ -26,6 +26,8 @@
   --color-success: #343536;
   --color-warning: #434447;
   --color-danger: #343536;
+  --brand-emblem-filter: invert(1);
+  --brand-emblem-blend: multiply;
 }
 @media (prefers-color-scheme: light) {
   .console-shell[data-theme="system"] {
@@ -46,6 +48,8 @@
     --color-success: #343536;
     --color-warning: #434447;
     --color-danger: #343536;
+    --brand-emblem-filter: invert(1);
+    --brand-emblem-blend: multiply;
   }
 }
 .console-shell h1 {
@@ -110,6 +114,13 @@
   border: 1px solid var(--color-control-border);
   border-radius: var(--radius-control);
   background: var(--color-surface-raised);
+}
+.workspace-avatar .brand-emblem {
+  --brand-emblem-size: 18px;
+}
+.console-brand .wordmark {
+  --brand-emblem-size: 28px;
+  font-size: 16px;
 }
 .console-workspace > span:last-child {
   min-width: 0;
@@ -573,10 +584,9 @@
 }
 .console-filters {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(140px, 0.7fr) minmax(
-      160px,
-      0.7fr
-    ) auto;
+  grid-template-columns:
+    minmax(180px, 1fr) minmax(140px, 0.7fr) minmax(160px, 0.7fr)
+    auto;
   gap: var(--space-3);
   align-items: end;
 }

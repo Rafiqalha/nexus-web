@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "audit:production": "npm audit --omit=dev --audit-level=high --cache node_modules/.cache/npm-audit",
+    "measure:web": "node scripts/measure-web.mjs",
+    "verify:release": "node scripts/verify-release.mjs"
   },
   "dependencies": {
     "geist": "^1.8.2",

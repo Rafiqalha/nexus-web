@@ -1,4 +1,10 @@
-import { Smartphone, Cpu, FileKey2, Server, ArrowRight } from "lucide-react";
+import {
+  Smartphone,
+  Cpu,
+  FileKey2,
+  Server,
+  ArrowRight,
+} from "@/components/ui/icons";
 const steps = [
   {
     icon: Smartphone,

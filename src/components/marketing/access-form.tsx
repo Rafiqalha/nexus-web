@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useSyncExternalStore, type FormEvent } from "react";
-import { Download, Info } from "lucide-react";
+import { Download, Info } from "@/components/ui/icons";
 const fields = [
   { name: "name", label: "Name", autoComplete: "name", max: 100 },
   { name: "email", label: "Work email", autoComplete: "email", max: 254 },

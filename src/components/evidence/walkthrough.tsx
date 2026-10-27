@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useId, useState, startTransition, ViewTransition } from "react";
 import {
   Check,
   Clock3,
@@ -8,7 +8,7 @@ import {
   RotateCcw,
   FileCheck2,
   ArrowDown,
-} from "lucide-react";
+} from "@/components/ui/icons";
 const scenarios = {
   fresh: {
     label: "Fresh",
@@ -63,7 +63,15 @@ const scenarios = {
 } as const;
 type Scenario = keyof typeof scenarios;
 export function Walkthrough({ expanded = false }: { expanded?: boolean }) {
+  const selectionId = useId();
   const [selected, setSelected] = useState<Scenario>("fresh");
+  function selectScenario(scenario: Scenario) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setSelected(scenario);
+    } else {
+      startTransition(() => setSelected(scenario));
+    }
+  }
   const current = scenarios[selected];
   const VerdictIcon =
     current.tone === "success"
@@ -99,9 +107,25 @@ export function Walkthrough({ expanded = false }: { expanded?: boolean }) {
               key={key}
               type="button"
               aria-pressed={selected === key}
-              onClick={() => setSelected(key)}
+              onClick={() => selectScenario(key)}
             >
-              {scenarios[key].label}
+              {selected === key && (
+                <ViewTransition
+                  name={`${selectionId}-selection`}
+                  share="selection-slide"
+                  default="none"
+                >
+                  <span className="scenario-indicator" aria-hidden="true" />
+                </ViewTransition>
+              )}
+              <ViewTransition
+                key={selected}
+                name={`${selectionId}-${key}-label`}
+                share="selection-label"
+                default="none"
+              >
+                <span className="scenario-label">{scenarios[key].label}</span>
+              </ViewTransition>
             </button>
           ))}
       </div>
@@ -110,7 +134,7 @@ export function Walkthrough({ expanded = false }: { expanded?: boolean }) {
           <span className="mono">req_demo_01</span>
           <span>Staging illustration</span>
         </div>
-        <div className={`verdict ${current.tone}`}>
+        <div key={selected} className={`verdict ${current.tone}`}>
           <VerdictIcon size={20} aria-hidden="true" />
           <strong>{current.verdict}</strong>
         </div>
@@ -175,7 +199,7 @@ export function Walkthrough({ expanded = false }: { expanded?: boolean }) {
           <button
             className="reset-button"
             type="button"
-            onClick={() => setSelected("fresh")}
+            onClick={() => selectScenario("fresh")}
           >
             <RotateCcw size={14} aria-hidden="true" />
             Reset demo

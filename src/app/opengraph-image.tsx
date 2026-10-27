@@ -7,8 +7,8 @@ export default function Image() {
   return new ImageResponse(
     <div
       style={{
-        background: "#FAFAF8",
-        color: "#171A21",
+        background: "#08090A",
+        color: "#F7F8F8",
         width: "100%",
         height: "100%",
         display: "flex",
@@ -17,7 +17,7 @@ export default function Image() {
         justifyContent: "space-between",
       }}
     >
-      <div style={{ display: "flex", fontSize: 36, color: "#2457E6" }}>
+      <div style={{ display: "flex", fontSize: 36, color: "#F7F8F8" }}>
         Nexus.
       </div>
       <div
@@ -30,10 +30,10 @@ export default function Image() {
       >
         Security for human-verified interactions.
       </div>
-      <div style={{ display: "flex", fontSize: 24, color: "#596273" }}>
+      <div style={{ display: "flex", fontSize: 24, color: "#8A8F98" }}>
         Device integrity · Session evidence · Server verification
       </div>
-      <div style={{ display: "flex", fontSize: 20, color: "#2457E6" }}>
+      <div style={{ display: "flex", fontSize: 20, color: "#D0D0D0" }}>
         Developer preview / Android staging
       </div>
     </div>,

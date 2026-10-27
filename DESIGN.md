@@ -10,7 +10,7 @@ Nexus should feel precise, approachable, and technically credible. A buyer shoul
 
 “YC-quality” is an aspiration for clarity and product execution, not an official YC design standard and not a claim that Nexus is YC-backed.
 
-The visual direction is a restrained light interface with deep blue accents, strong typography, clear evidence tables, and occasional dark technical panels. Let the product itself provide the visual interest. Avoid hacker-movie styling, excessive gradients, decorative code, glowing shields, or an all-card layout.
+The current visual direction follows the owner's 2026-10-27 request for Linear's neutral appearance: a near-black canvas, gray layered surfaces, Inter Variable typography, white/gray actions, and a wide original product illustration. All UI accents, focus rings, and statuses are neutral; status text and icons distinguish decisions and errors. This supersedes the original light marketing direction and the first violet-accent revision; see the [design decision](./docs/decisions/2026-10-27-marketing-design.md). Let the product itself provide the visual interest. Avoid hacker-movie styling, excessive gradients, decorative code, glowing shields, or an all-card layout.
 
 [PRD.md](./PRD.md) defines scope and claim boundaries. [AGENTS.md](./AGENTS.md) defines implementation rules. These tokens and layouts are design decisions for Nexus, not measured copies of another company's website.
 
@@ -24,7 +24,7 @@ The visual direction is a restrained light interface with deep blue accents, str
 | [Linear](https://linear.app/) | Controlled hierarchy and interaction polish | Use consistent density, alignment, and restrained transitions |
 | [Vercel Geist](https://vercel.com/font) | A coherent sans/monospace type family | Use Geist Sans for UI and Geist Mono for identifiers/code |
 
-These are directional references. Do not claim their exact CSS, font sizes, or conversion performance was measured. Do not reproduce protected assets or testimonials.
+Linear's rendered palette, font family, heading metrics, navigation height, and horizontal alignment were measured at 1440px and 390px on 2026-10-27, as recorded in the design decision. Other references remain directional. No conversion performance was measured. Do not reproduce protected assets or testimonials.
 
 ## 3. Brand and content voice
 
@@ -52,38 +52,41 @@ Define semantic CSS variables in the global theme. Components consume semantic t
 
 | Token | Light | Dark | Usage |
 | --- | --- | --- | --- |
-| `--color-bg` | `#FAFAF8` | `#0D1117` | Page canvas |
-| `--color-surface` | `#FFFFFF` | `#151B23` | Panels, menus, table surfaces |
-| `--color-surface-subtle` | `#F3F5F8` | `#1D2633` | Hover, grouped controls, subdued regions |
-| `--color-text` | `#171A21` | `#F0F3F8` | Primary text |
-| `--color-text-muted` | `#596273` | `#A8B3C3` | Secondary text, captions |
-| `--color-border` | `#E2E5EA` | `#344155` | Decorative separators |
-| `--color-control-border` | `#788396` | `#73839A` | Essential control boundaries |
-| `--color-brand` | `#2457E6` | `#8BAAFF` | Links and accent text |
-| `--color-brand-soft` | `#EEF3FF` | `#17264A` | Active/selected background |
-| `--color-action-bg` | `#2457E6` | `#2457E6` | Primary button background |
-| `--color-action-text` | `#FFFFFF` | `#FFFFFF` | Primary button label |
-| `--color-focus` | `#2457E6` | `#8BAAFF` | Keyboard focus ring |
-| `--color-success` | `#167348` | `#6DD6A1` | Passed/accepted scope labels |
-| `--color-success-soft` | `#EAF7F0` | `#123428` | Success badge background |
-| `--color-warning` | `#9A5B00` | `#F5C46B` | Expiry warnings, attention |
-| `--color-warning-soft` | `#FFF4DE` | `#382A15` | Warning badge background |
-| `--color-danger` | `#B42318` | `#FF9C93` | Denial/error labels, destructive text |
-| `--color-danger-soft` | `#FDEEEB` | `#3B2022` | Error badge background |
+| `--color-bg` | `#FAFAF8` | `#08090A` | Page canvas |
+| `--color-surface` | `#FFFFFF` | `#0F1011` | Panels, menus, table surfaces |
+| `--color-surface-subtle` | `#F3F5F8` | `#0B0C0D` | Grouped controls, subdued regions |
+| `--color-surface-raised` | — | `#191A1B` | Selected controls and inset notes |
+| `--color-text` | `#171A21` | `#F7F8F8` | Primary text |
+| `--color-text-muted` | `#596273` | `#8A8F98` | Secondary text, captions |
+| `--color-border` | `#E2E5EA` | `#23252A` | Decorative separators |
+| `--color-control-border` | `#788396` | `#717378` | Essential control boundaries |
+| `--color-brand` | `#2457E6` | `#D0D0D0` | Links and accent text |
+| `--color-brand-soft` | `#EEF3FF` | `#1C1C1F` | Active/selected background |
+| `--color-action-bg` | `#2457E6` | `#E5E5E6` | Primary button background |
+| `--color-action-text` | `#FFFFFF` | `#08090A` | Primary button label |
+| `--color-focus` | `#2457E6` | `#D0D0D0` | Keyboard focus ring |
+| `--color-success` | `#167348` | `#E4E4E7` | Accepted label, accompanied by check and text |
+| `--color-success-soft` | `#EAF7F0` | `#1B1C1D` | Status surface |
+| `--color-warning` | `#9A5B00` | `#C5C5C8` | Expiry label, accompanied by clock and text |
+| `--color-warning-soft` | `#FFF4DE` | `#1C1C1F` | Status surface |
+| `--color-danger` | `#B42318` | `#E4E4E7` | Rejection/error label, accompanied by icon and text |
+| `--color-danger-soft` | `#FDEEEB` | `#1C1C1F` | Error surface |
+| `--color-header` | — | `rgb(8 9 10 / 88%)` | Translucent sticky navigation |
+| `--color-ambient` | — | `rgb(255 255 255 / 4%)` | Restrained neutral illustration illumination |
 
-Marketing defaults to light. The console supports system preference plus a persistent user selection. Resolve the initial preference consistently to avoid a theme flash or hydration mismatch. Do not use color to distinguish staging from production without a text label.
+Marketing uses the approved dark palette. The M2 console supports dark (default), light, and system preference; the initial choice is read server-side from a non-secret appearance cookie and OS preference is resolved by CSS. The light column above records the original marketing palette, while the console's neutral light tokens are defined in `src/app/console.css`: canvas `#FAFAFA`, surface `#FFFFFF`, primary text `#171819`, secondary text `#575B63`, border `#DEDFE2`, control border `#77797F`, and inverse action `#242527` with white text. Statuses and focus remain neutral. Do not use color to distinguish staging from production without a text label.
 
 Text contrast targets: at least 4.5:1 for normal text and 3:1 for qualifying large text. Essential controls and focus indicators require appropriate non-text contrast. The pale decorative border token is not sufficient as the sole boundary of an essential input. Validate actual rendered combinations, including hover, disabled, selected, and dark states.
 
 ## 5. Typography
 
-Use Geist Sans for headings, prose, controls, and tables. Use Geist Mono for identifiers, digests, endpoint examples, and code. Load through `next/font` or verified locally hosted assets; do not add a runtime third-party font dependency.
+Use the officially distributed Inter Variable 4.1 for headings, prose, controls, and tables, loaded through `next/font/local`. It replaces Geist Sans following direct measurement of Linear's typography. Keep Geist Mono for identifiers, digests, endpoint examples, and code. Font files and licenses are verified local assets; do not add a runtime third-party font dependency.
 
 | Role | Desktop | Mobile | Weight / line height |
 | --- | --- | --- | --- |
-| Hero | 64px, adjustable 60–68 | 40px, adjustable 36–44 | 600 / 1.08 |
-| Page title | 40px | 32px | 600 / 1.15 |
-| Section title | 36px | 28px | 600 / 1.2 |
+| Hero | 64px maximum, responsive | 38px | 510 / 1 desktop, 1.1 mobile |
+| Page title | 60px maximum, responsive | 32–44px, responsive | 500 / 1.15 |
+| Section title | 48px maximum, responsive | 28px | 510 / 1 |
 | Panel title | 20px | 20px | 600 / 1.3 |
 | Marketing body | 18px | 17px | 400 / 1.65 |
 | Console body | 14–16px | 14–16px | 400 / 1.5 |
@@ -91,7 +94,7 @@ Use Geist Sans for headings, prose, controls, and tables. Use Geist Mono for ide
 | Metadata | 12–13px | 12–13px | 400 / 1.5 |
 | Identifier / code | 12–14px | 12–14px | 400 / 1.6 |
 
-Use no more than three main font weights in a typical view. Prefer 400, 500, and 600; reserve 700 for rare emphasis. Apply tabular numerals to metric values, timestamps, and numeric table columns. Body prose should normally stay within 60–75 characters per line. Avoid all-caps paragraphs and excessive negative letter spacing.
+Use no more than three main font weights in a typical view. Prefer 400, 510, and 600; reserve 700 for rare emphasis. Hero and section tracking is -0.022em, as measured in Linear. Apply tabular numerals to metric values, timestamps, and numeric table columns. Body prose should normally stay within 60–75 characters per line. Avoid all-caps paragraphs and excessive negative letter spacing.
 
 Use responsive `clamp()` sizing where helpful. Long headings and translated strings must wrap naturally; never force a headline into a fixed line count with clipping.
 
@@ -99,38 +102,38 @@ Use responsive `clamp()` sizing where helpful. Long headings and translated stri
 
 Base spacing scale in pixels: `4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 112`.
 
-- Marketing container: maximum 1200px; side padding 20px on narrow phones, 24px on tablet, 32px on desktop.
+- Marketing container: outer maximum 1344px; side padding 24px on phones/tablets and 32px on desktop. This gives 80px content offsets at a 1440px viewport. The homepage preview extends 20px past the desktop text edge; mobile remains within its container.
 - Marketing sections: 80–112px vertical spacing on desktop; 48–64px on mobile.
 - Marketing grid: up to 12 columns desktop, 6 tablet, 4 mobile. Do not force every section into a card grid.
 - Console sidebar: 240px desktop. Collapse to a labeled accessible navigation drawer at smaller widths.
 - Console top bar: approximately 64px; content padding 24–32px desktop and 16–20px mobile.
 - Form content: normally 480–640px maximum width. Avoid full-width text fields on a large monitor.
 
-Radius tokens: controls 8px, standard panels 12px, prominent product preview 16px. Use a pill radius for compact status badges only. Avoid rounding every container into a capsule.
+Radius tokens: controls 8px, standard panels 12px, prominent product preview 16px. Use a pill radius for compact status badges and the header access action, matching the measured navigation treatment. Avoid rounding every container into a capsule.
 
 Shadow tokens:
 
 ```css
---shadow-panel: 0 1px 2px rgb(16 24 40 / 0.04);
---shadow-popover: 0 8px 24px rgb(16 24 40 / 0.12);
---shadow-feature: 0 16px 48px rgb(16 24 40 / 0.08);
+--shadow-panel: 0 1px 2px rgb(0 0 0 / 0.2);
+--shadow-popover: 0 16px 48px rgb(0 0 0 / 0.4);
+--shadow-feature: 0 24px 96px rgb(0 0 0 / 0.4);
 ```
 
 Dark mode should use borders and surface separation first; keep shadows subtle. Borders, background changes, and whitespace should establish hierarchy before visual effects.
 
 ## 7. Icons and components
 
-Use Lucide React icons. Import individual icons and verify names against the installed version. Typical concepts include shield/check, key, layers, activity, clock, code, settings, external link, and chevron.
+Use the original Nexus SVG family in `src/components/ui/icons.tsx`, following the owner's request for distinctive icons. This supersedes the initial Lucide direction. The family uses open geometry on a 24px grid, restrained secondary fills, and consistent 1.5px strokes. Symbols represent application, session, key statement, policy, and trust boundaries; utility arrows and controls follow the same construction. Icons inherit the neutral theme.
 
 - Navigation icons: 18–20px.
 - Feature illustrations: 24px icons inside purposeful diagrams, not oversized decorative badges.
-- Stroke: usually 1.75–2, consistent within a view.
+- Stroke: 1.5px on the 24px design grid, consistent within a view.
 - Icon-only controls require accessible names and adequate targets.
 - Decorative icons use `aria-hidden`.
 
 ### Buttons and inputs
 
-Primary button: solid action color, white label, 44px default height, 16px horizontal padding. Secondary button: surface background and essential boundary. Tertiary action: text with a clear hover/focus state.
+Primary button: solid action background and matching action-text token, 44px default minimum height, 16px horizontal padding. Secondary button: surface background and essential boundary. Tertiary action: text with a clear hover/focus state.
 
 Inputs: 44px default height, visible label, optional helper text, and a persistent error message linked to the field. Placeholder text supplements a label; it does not replace it. Password/secret reveal states require explicit interaction and accessible labels.
 
@@ -160,7 +163,7 @@ A sticky header is acceptable if it does not obscure focused controls or anchor 
 
 ### 8.2 Hero
 
-Use a two-column desktop layout: approximately five columns for copy and seven for the product illustration. On mobile, copy precedes illustration. Keep primary content visible without forcing a full-height viewport section.
+Use a spacious left-aligned headline and a wide product illustration beneath the copy and actions. The illustration has original Nexus navigation, interactive synthetic evidence, and a scope panel; simplify the panels on narrow screens while retaining the simulation label and evidence controls. Keep primary content visible without forcing a full-height viewport section.
 
 The illustration should show the relationship between application evidence, policy checks, and a scoped server decision. An interactive sample may switch between fresh, expired, and rejected synthetic scenarios. Label it “Illustrative demo” and show meaningful changes in evidence rows, not random animated counters.
 
@@ -258,10 +261,16 @@ Motion clarifies change; it must not delay access to information.
 | `--motion-standard` | 180ms | Tabs, selection, popovers |
 | `--motion-panel` | 240ms | Drawer/dialog entry where appropriate |
 | `--motion-reveal` | 320ms | Optional one-time section reveal |
+| `--motion-arrive` | 560ms | One-time translated viewport entry; text stays fully opaque |
+| `--motion-route` | 280ms | Lateral page crossfade |
+| `--motion-stagger` | 55ms | Entry spacing between related elements, capped at three steps |
+| `--motion-signal` | 850ms | One-time illustrative path drawing, tracked with the entry animations |
 
 Default easing: `cubic-bezier(0.2, 0, 0, 1)`. Use opacity and small translation, generally 4–12px. Avoid animating layout dimensions on dense tables. A section reveal must not leave meaningful content inaccessible if JavaScript fails.
 
 Use CSS for hover and simple transitions. Add Motion only for interactions needing coordination. Respect `prefers-reduced-motion` in CSS and Motion configuration; remove nonessential movement and auto-play. Do not use particles, infinite scanning loops, cursor-following glows, auto-scrolling logo strips, or parallax as default decoration.
+
+The current implementation uses React View Transitions for page changes and a shared scenario-selection indicator, CSS for hover/press/menu feedback, and one IntersectionObserver with the Web Animations API for viewport entries. A thin reading-progress line follows native scrolling, using a CSS scroll timeline with a passive frame-scheduled fallback. Same-page anchor navigation updates the URL, respects the header offset, and focuses the destination. Content remains visible without JavaScript; reduced motion cancels active entry animations and disables nonessential movement. See the [interaction decision](./docs/decisions/2026-10-27-motion-and-icons.md).
 
 Charts should not continually animate incoming data. Pause decorative work when not visible. Never make a rejected/accepted decision wait for a theatrical animation.
 

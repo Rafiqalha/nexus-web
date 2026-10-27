@@ -1,4 +1,5 @@
-import { Activity, FileKey2, ListChecks } from "lucide-react";
+import { Activity, FileKey2, ListChecks } from "@/components/ui/icons";
+import { RouteTransition } from "@/components/motion/route-transition";
 import { Architecture } from "@/components/marketing/architecture";
 import { AccessCTA, PageIntro, TextLink } from "@/components/marketing/shared";
 import { pageMetadata } from "@/lib/metadata";
@@ -9,7 +10,7 @@ export const metadata = pageMetadata(
 );
 export default function Product() {
   return (
-    <>
+    <RouteTransition>
       <PageIntro
         eyebrow="The product"
         title="Every decision needs its evidence."
@@ -19,7 +20,11 @@ export default function Product() {
           checks performed by your verification backend.
         </p>
       </PageIntro>
-      <section id="architecture" className="container architecture-page">
+      <section
+        id="architecture"
+        className="container architecture-page"
+        tabIndex={-1}
+      >
         <h2 className="sr-only">Application to server evidence flow</h2>
         <Architecture />
         <p className="source-caption">
@@ -130,6 +135,6 @@ export default function Product() {
         </div>
       </section>
       <AccessCTA />
-    </>
+    </RouteTransition>
   );
 }

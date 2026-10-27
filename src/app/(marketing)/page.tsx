@@ -4,11 +4,20 @@ import {
   ListChecks,
   ArrowUpRight,
   Code2,
-} from "lucide-react";
+  Landmark,
+  ScanFace,
+  AppWindow,
+} from "@/components/ui/icons";
+import { RouteTransition } from "@/components/motion/route-transition";
 import Link from "next/link";
 import { AccessCTA, ButtonLink, TextLink } from "@/components/marketing/shared";
 import { Architecture } from "@/components/marketing/architecture";
-import { Walkthrough } from "@/components/evidence/walkthrough";
+import { ProductPreview } from "@/components/marketing/product-preview";
+import {
+  SessionIllustration,
+  EvidenceIllustration,
+  PolicyIllustration,
+} from "@/components/marketing/capability-illustrations";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
   "Security for human-verified interactions",
@@ -17,49 +26,31 @@ export const metadata = pageMetadata(
 );
 export default function Home() {
   return (
-    <>
+    <RouteTransition>
       <section className="container hero">
         <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" />
-            Evidence infrastructure
-          </p>
           <h1>
-            Security for
-            <br />
-            human-verified
-            <br />
-            <span>interactions.</span>
+            Security for <span className="keep-together">human-verified</span>{" "}
+            interactions.
           </h1>
-          <p className="lead">
-            Connect device integrity, session evidence, and server-side
-            verification. Give sensitive requests the context they deserve.
-          </p>
-          <div className="hero-actions">
-            <ButtonLink href="/request-access">
-              Request developer access
-            </ButtonLink>
-            <TextLink href="/product#architecture">
-              Explore the architecture
-            </TextLink>
-          </div>
-          <p className="availability">
-            Developer preview <span>·</span> Android staging only
-          </p>
-        </div>
-        <div className="hero-visual">
-          <div className="visual-label">
-            <span className="mono">01 / EVIDENCE → DECISION</span>
-            <span>Illustrative demo</span>
-          </div>
-          <Walkthrough />
-          <div className="visual-caption">
-            <span className="caption-line" />
-            Know what was checked.
-            <br />
-            See what remains unknown.
+          <div className="hero-summary">
+            <p className="lead">
+              Connect device integrity, session evidence, and server-side
+              verification. Give sensitive requests the context they deserve.
+            </p>
+            <div className="hero-actions">
+              <TextLink href="/product#architecture">
+                Explore the architecture
+              </TextLink>
+              <Link className="hero-announcement" href="/developers#platforms">
+                <strong>Developer preview</strong>
+                <span>Android staging</span>
+                <ArrowUpRight size={13} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
+        <ProductPreview />
       </section>
       <div className="context-strip">
         <div className="container">
@@ -68,9 +59,16 @@ export default function Home() {
             <br />
             <strong>that need more context.</strong>
           </p>
-          <span>Fintech engineering</span>
-          <span>e-KYC workflows</span>
-          <span>Sensitive app interactions</span>
+          <span>
+            <Landmark size={20} aria-hidden="true" /> Fintech engineering
+          </span>
+          <span>
+            <ScanFace size={20} aria-hidden="true" /> e-KYC workflows
+          </span>
+          <span>
+            <AppWindow size={20} aria-hidden="true" /> Sensitive app
+            interactions
+          </span>
         </div>
       </div>
       <section className="container section problem-section">
@@ -95,7 +93,11 @@ export default function Home() {
           <TextLink href="/security">Understand the trust boundaries</TextLink>
         </div>
       </section>
-      <section className="section architecture-section" id="how-it-works">
+      <section
+        className="section architecture-section"
+        id="how-it-works"
+        tabIndex={-1}
+      >
         <div className="container">
           <div className="section-heading">
             <div>
@@ -135,7 +137,8 @@ export default function Home() {
         </div>
         <div className="capabilities">
           <article>
-            <Activity aria-hidden="true" />
+            <SessionIllustration />
+            <Activity className="capability-icon" aria-hidden="true" />
             <span className="mono small">01 / SESSION</span>
             <h3>Preserve session context</h3>
             <p>
@@ -148,7 +151,8 @@ export default function Home() {
             </p>
           </article>
           <article>
-            <Fingerprint aria-hidden="true" />
+            <EvidenceIllustration />
+            <Fingerprint className="capability-icon" aria-hidden="true" />
             <span className="mono small">02 / EVIDENCE</span>
             <h3>Verify the statement</h3>
             <p>
@@ -160,7 +164,8 @@ export default function Home() {
             </p>
           </article>
           <article>
-            <ListChecks aria-hidden="true" />
+            <PolicyIllustration />
+            <ListChecks className="capability-icon" aria-hidden="true" />
             <span className="mono small">03 / POLICY</span>
             <h3>Understand the decision</h3>
             <p>
@@ -232,6 +237,6 @@ export default function Home() {
         </div>
       </section>
       <AccessCTA />
-    </>
+    </RouteTransition>
   );
 }

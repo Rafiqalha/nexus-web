@@ -1,5 +1,6 @@
 import { PageIntro, AccessCTA, TextLink } from "@/components/marketing/shared";
 import { pageMetadata } from "@/lib/metadata";
+import { RouteTransition } from "@/components/motion/route-transition";
 export const metadata = pageMetadata(
   "Company",
   "Why Nexus is building evidence infrastructure for sensitive digital interactions.",
@@ -7,7 +8,7 @@ export const metadata = pageMetadata(
 );
 export default function Company() {
   return (
-    <>
+    <RouteTransition>
       <PageIntro
         eyebrow="Why Nexus"
         title="Better decisions start with better evidence."
@@ -103,6 +104,6 @@ export default function Company() {
         </div>
       </section>
       <AccessCTA />
-    </>
+    </RouteTransition>
   );
 }

@@ -9,6 +9,7 @@ const routes = [
   "/company",
   "/request-access",
   "/demo",
+  "/demo/walkthrough",
 ];
 
 for (const width of [320, 360, 390, 768, 1024, 1440]) {
@@ -108,7 +109,7 @@ test("keyboard skip link and mobile menu work with Escape focus restoration", as
 test("synthetic scenarios preserve trust boundaries and reset without live services", async ({
   page,
 }) => {
-  await page.goto("/demo");
+  await page.goto("/demo/walkthrough");
   const requests: string[] = [];
   page.on("request", (request) => requests.push(request.url()));
   await expect(page.getByText("Simulated data")).toHaveCount(2);
@@ -135,7 +136,7 @@ test("synthetic scenarios preserve trust boundaries and reset without live servi
   ).toBeVisible();
   await expect(preview.getByText("Unverified", { exact: true })).toBeVisible();
   await expect(preview.getByText("Simulated", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "Reset demo" }).click();
+  await page.getByRole("button", { name: "Reset demo", exact: true }).click();
   await expect(
     preview.getByText("Accepted under policy", { exact: true }),
   ).toBeVisible();

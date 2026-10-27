@@ -1,5 +1,6 @@
 import { PageIntro, TextLink, AccessCTA } from "@/components/marketing/shared";
 import { pageMetadata } from "@/lib/metadata";
+import { RouteTransition } from "@/components/motion/route-transition";
 export const metadata = pageMetadata(
   "Security",
   "Understand what Nexus evidence establishes, what remains unverified, and the current staging and website data boundaries.",
@@ -7,7 +8,7 @@ export const metadata = pageMetadata(
 );
 export default function Security() {
   return (
-    <>
+    <RouteTransition>
       <PageIntro
         eyebrow="Security and trust"
         title="Be precise about what is proven."
@@ -94,7 +95,7 @@ export default function Security() {
         </div>
       </section>
       <section className="container section info-columns">
-        <article id="data-handling">
+        <article id="data-handling" tabIndex={-1}>
           <p className="eyebrow">Website data handling</p>
           <h2>Keep sensitive evidence out.</h2>
           <p>
@@ -113,7 +114,7 @@ export default function Security() {
             supplied before opening access intake.
           </p>
         </article>
-        <article id="reporting">
+        <article id="reporting" tabIndex={-1}>
           <p className="eyebrow">Security reporting</p>
           <h2>Reporting channel pending.</h2>
           <p>
@@ -128,6 +129,6 @@ export default function Security() {
         </article>
       </section>
       <AccessCTA />
-    </>
+    </RouteTransition>
   );
 }

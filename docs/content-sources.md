@@ -15,7 +15,7 @@ The [UIN Malang WrecK-IT report](https://informatika.uin-malang.ac.id/id/1st-win
 ## M0/M1 decisions and dependencies
 
 - Preserve existing Next.js 16.4.3 / React 19.3.0 / Tailwind 4 configuration and npm lockfile. Restore the original generated Next.js AGENTS block alongside the user's Nexus instructions.
-- Public content uses English, semantic DESIGN tokens, server-rendered pages, and a separate synthetic `/demo` layout. The walkthrough is the M0 demo shell and M1 illustration, not the full M2 console.
+- Public content uses English, semantic DESIGN tokens, server-rendered pages, and a separate synthetic `/demo` layout. The original M0/M1 illustration is retained at `/demo/walkthrough`; the M2 console and its boundaries are documented in [the M2 decision](./decisions/2026-10-27-console-demo.md).
 - No delivery provider, approved recipient/contact, rate-limit storage, or approved privacy/retention policy exists in the supplied configuration. Therefore access intake is explicitly unavailable. The form validates only a browser-local text-file draft; it does not POST, persist remotely, or grant access. Server validation, abuse limits, provider-confirmed success, and failure handling are required before enabling delivery.
 - No monitored security channel is invented. Security reporting availability is explicit. Legal routes are omitted until actual policies are approved; footer data-handling information describes only this implementation.
 - SITE_URL is optional server build configuration for the approved canonical origin. Until configured, canonical URLs and sitemap entries are omitted. A generated social preview is available; no domain ownership is assumed.

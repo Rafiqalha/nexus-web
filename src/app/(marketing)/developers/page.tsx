@@ -1,4 +1,5 @@
-import { ArrowUpRight, BookOpen, Code2 } from "lucide-react";
+import { ArrowUpRight, BookOpen, Code2 } from "@/components/ui/icons";
+import { RouteTransition } from "@/components/motion/route-transition";
 import { PageIntro, AccessCTA, TextLink } from "@/components/marketing/shared";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
@@ -8,7 +9,7 @@ export const metadata = pageMetadata(
 );
 export default function Developers() {
   return (
-    <>
+    <RouteTransition>
       <PageIntro
         eyebrow="Developer resources"
         title="Understand the stack. Plan your integration."
@@ -36,7 +37,7 @@ export default function Developers() {
           <ArrowUpRight aria-hidden="true" />
         </a>
       </div>
-      <section id="integration" className="container section">
+      <section id="integration" className="container section" tabIndex={-1}>
         <div className="section-heading">
           <div>
             <p className="eyebrow">Integration overview</p>
@@ -93,7 +94,7 @@ export default function Developers() {
           </li>
         </ol>
       </section>
-      <section id="platforms" className="subtle-section">
+      <section id="platforms" className="subtle-section" tabIndex={-1}>
         <div className="container">
           <p className="eyebrow">Platform availability</p>
           <h2>Choose from what exists.</h2>
@@ -161,7 +162,11 @@ export default function Developers() {
           </div>
         </div>
       </section>
-      <section className="container section source-section" id="sources">
+      <section
+        className="container section source-section"
+        id="sources"
+        tabIndex={-1}
+      >
         <div>
           <p className="eyebrow">Source notes</p>
           <h2>
@@ -213,6 +218,6 @@ export default function Developers() {
         </div>
       </section>
       <AccessCTA />
-    </>
+    </RouteTransition>
   );
 }

@@ -1,32 +1,42 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { Wordmark } from "@/components/marketing/shared";
+import { Suspense } from "react";
+import { cookies } from "next/headers";
+import type { ThemePreference } from "@/lib/contracts/console";
+import { DemoProvider } from "@/components/console/demo-context";
+import { DemoShell } from "@/components/console/shell";
+import { ConsoleLoading } from "@/components/console/shared";
+export const metadata = {
+  title: { default: "Console demo | Nexus", template: "%s | Nexus demo" },
+  description:
+    "An isolated Nexus console with fixed, explicitly synthetic staging records.",
+  robots: { index: false, follow: false },
+};
+async function ConfiguredDemo({ children }: { children: React.ReactNode }) {
+  const preference = (await cookies()).get("nexus-demo-theme")?.value;
+  const initialTheme: ThemePreference =
+    preference === "light" || preference === "system" ? preference : "dark";
+  return (
+    <DemoProvider initialTheme={initialTheme}>
+      <DemoShell>{children}</DemoShell>
+    </DemoProvider>
+  );
+}
 export default function DemoLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="demo-shell">
-      <header className="demo-header">
-        <div className="container">
-          <Link href="/" aria-label="Nexus home">
-            <Wordmark />
-          </Link>
+    <Suspense
+      fallback={
+        <div className="console-boot">
           <span className="simulation-label">Simulated data</span>
-          <Link className="text-link" href="/product">
-            <ArrowLeft size={16} aria-hidden="true" />
-            Back to product
-          </Link>
+          <main id="main-content" tabIndex={-1}>
+            <ConsoleLoading />
+          </main>
         </div>
-      </header>
-      <main id="main-content" tabIndex={-1}>
-        {children}
-      </main>
-      <footer className="demo-footer container">
-        Illustrative demo · No live services, accounts, or credentials. Reset
-        restores the fresh scenario.
-      </footer>
-    </div>
+      }
+    >
+      <ConfiguredDemo>{children}</ConfiguredDemo>
+    </Suspense>
   );
 }

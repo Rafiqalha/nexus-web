@@ -1,0 +1,301 @@
+/* Motion augments live content; no section depends on animation for visibility. */
+.nexus-icon {
+  stroke-width: 1.5;
+  overflow: visible;
+}
+.nexus-icon .icon-tone {
+  fill: currentColor;
+  fill-opacity: 0.1;
+  stroke: none;
+  transition: fill-opacity var(--motion-standard) var(--ease);
+}
+.nexus-icon .icon-detail {
+  opacity: 0.55;
+}
+:is(a, button, article):hover .nexus-icon .icon-tone {
+  fill-opacity: 0.2;
+}
+:is(a, button, summary) {
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--motion-fast) var(--ease),
+    background-color var(--motion-fast) var(--ease),
+    border-color var(--motion-fast) var(--ease),
+    scale var(--motion-fast) var(--ease),
+    translate var(--motion-fast) var(--ease);
+}
+body :is(a, button, summary):active {
+  scale: 0.98;
+  translate: 0 1px;
+}
+:is(.button, .text-link, .hero-announcement) .nexus-icon {
+  transition: translate var(--motion-standard) var(--ease-out);
+}
+:is(.button, .text-link, .hero-announcement):hover
+  .nexus-icon[data-icon="arrow-up-right"] {
+  translate: 2px -2px;
+}
+:is(.button, .text-link):hover .nexus-icon[data-icon="arrow-right"] {
+  translate: 3px 0;
+}
+.text-link:hover {
+  text-decoration: none;
+  color: var(--color-text);
+}
+.desktop-nav a {
+  position: relative;
+}
+.desktop-nav a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 var(--space-1);
+  height: 1px;
+  background: currentColor;
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale var(--motion-standard) var(--ease-out);
+}
+.desktop-nav a:hover::after,
+.desktop-nav a[aria-current]::after {
+  scale: 1 1;
+}
+.site-header,
+.demo-header {
+  view-transition-name: site-header;
+}
+.site-header {
+  transition:
+    box-shadow var(--motion-standard),
+    border-color var(--motion-standard);
+}
+:root:has(body > .reading-progress[data-scrolled="true"]) .site-header {
+  box-shadow: var(--shadow-panel);
+  border-bottom-color: var(--color-control-border);
+}
+.site-footer,
+.demo-footer {
+  view-transition-name: site-footer;
+}
+.reading-progress {
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  height: 2px;
+  pointer-events: none;
+}
+.reading-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--color-text-muted);
+  transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left;
+}
+@supports (animation-timeline: scroll()) {
+  .reading-progress > span {
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes reading-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.capabilities > article,
+.flow-node,
+.company-statement,
+.technical-outline {
+  transition:
+    border-color var(--motion-panel) var(--ease),
+    background-color var(--motion-panel) var(--ease),
+    box-shadow var(--motion-panel) var(--ease);
+}
+.capabilities > article:hover,
+.flow-node:hover,
+.company-statement:hover,
+.technical-outline:hover {
+  border-color: var(--color-control-border);
+  box-shadow: var(--shadow-panel);
+}
+.capability-illustration .session-node,
+.capability-illustration .evidence-sheet {
+  transition:
+    transform 420ms var(--ease-out),
+    border-color var(--motion-panel);
+}
+.capabilities > article:hover .session-node {
+  transform: translateY(-4px) rotate(-4deg);
+}
+.capabilities > article:hover .sheet-back {
+  transform: translateY(-26px) scale(0.9) rotate(-4deg);
+}
+.capabilities > article:hover .sheet-middle {
+  transform: translateY(-14px) scale(0.95) rotate(2deg);
+}
+.capabilities > article:hover .sheet-front {
+  transform: translateY(8px);
+}
+.scenario-indicator {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: 1px solid var(--color-control-border);
+  border-radius: inherit;
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-panel);
+  pointer-events: none;
+}
+.scenario-label {
+  position: relative;
+}
+.verdict {
+  animation: verdict-arrive var(--motion-standard) var(--ease-out);
+}
+@keyframes verdict-arrive {
+  from {
+    translate: 0 4px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+.field input,
+.field select,
+.field textarea {
+  transition:
+    border-color var(--motion-standard),
+    box-shadow var(--motion-standard);
+}
+.field :is(input, select, textarea):focus-visible {
+  box-shadow: 0 0 0 4px var(--color-brand-soft);
+}
+.field-error:not(:empty),
+.form-status:not(:empty) {
+  animation: verdict-arrive var(--motion-standard) var(--ease-out);
+}
+.mobile-menu[open] nav {
+  animation: menu-arrive var(--motion-panel) var(--ease-out);
+}
+@keyframes menu-arrive {
+  from {
+    translate: 0 -8px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+.nexus-icon .menu-line-first,
+.nexus-icon .menu-line-last,
+.nexus-icon .menu-dot {
+  transform-origin: 12px 12px;
+  transition:
+    transform var(--motion-panel) var(--ease-out),
+    opacity var(--motion-fast);
+}
+.mobile-menu[open] .menu-line-first {
+  transform: rotate(45deg) translateY(4px);
+}
+.mobile-menu[open] .menu-line-last {
+  transform: rotate(-45deg) translateY(-4px);
+}
+.mobile-menu[open] .menu-dot {
+  opacity: 0;
+}
+/* The live root keeps controls responsive while individual snapshots animate. */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-old(root) {
+  display: none;
+}
+::view-transition-new(root) {
+  animation: none;
+}
+::view-transition-group(site-header),
+::view-transition-group(site-footer) {
+  animation: none;
+}
+::view-transition-group(site-header) {
+  z-index: 100;
+}
+::view-transition-old(site-header),
+::view-transition-old(site-footer) {
+  display: none;
+}
+::view-transition-new(site-header),
+::view-transition-new(site-footer) {
+  animation: none;
+}
+::view-transition-old(.route-exit) {
+  animation: route-fade-out 140ms ease-out both;
+}
+::view-transition-new(.route-enter) {
+  animation: route-fade-in var(--motion-route) var(--ease-out) both;
+}
+@keyframes route-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes route-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+::view-transition-group(.selection-slide) {
+  z-index: 10;
+  animation-duration: var(--motion-panel);
+  animation-timing-function: var(--ease-out);
+}
+::view-transition-old(.selection-slide),
+::view-transition-new(.selection-slide) {
+  animation: none;
+  height: 100%;
+}
+/* Labels stay above the traveling pill, including when mobile controls wrap. */
+::view-transition-group(.selection-label) {
+  animation: none;
+  z-index: 20;
+}
+::view-transition-old(.selection-label) {
+  display: none;
+}
+::view-transition-new(.selection-label) {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    display: none;
+  }
+  body :is(a, button, summary):active {
+    scale: none;
+    translate: none;
+  }
+  :is(.button, .text-link, .hero-announcement):hover .nexus-icon {
+    translate: none !important;
+  }
+  .capabilities > article:hover .session-node {
+    transform: none;
+  }
+  .capabilities > article:hover .sheet-front {
+    transform: translateY(12px);
+  }
+  .capabilities > article:hover .sheet-middle {
+    transform: translateY(-10px) scale(0.95);
+  }
+  .capabilities > article:hover .sheet-back {
+    transform: translateY(-20px) scale(0.9);
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

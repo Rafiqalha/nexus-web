@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef } from "react";
-import { Menu, ArrowUpRight } from "lucide-react";
+import { Menu, ArrowUpRight } from "@/components/ui/icons";
 import { Wordmark } from "./shared";
 const links = [
   ["/product", "Product"],
@@ -33,9 +33,14 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <Link href="/request-access" className="header-cta">
-          Request access <ArrowUpRight size={16} aria-hidden="true" />
-        </Link>
+        <div className="header-actions">
+          <Link href="/demo" className="header-demo">
+            Demo
+          </Link>
+          <Link href="/request-access" className="header-cta">
+            Request access
+          </Link>
+        </div>
         <details
           className="mobile-menu"
           ref={menu}

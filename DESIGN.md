@@ -274,6 +274,14 @@ The current implementation uses React View Transitions for page changes and a sh
 
 Charts should not continually animate incoming data. Pause decorative work when not visible. Never make a rejected/accepted decision wait for a theatrical animation.
 
+The homepage product illustration is a four-page Nexus playbook: request inspection,
+evidence flow, integration guide, and trust boundaries. Offset, subtly rotated panels
+remain visible behind the active page. Mouse drag, touch swipe, chapter buttons,
+previous/next controls, and focused arrow/Home/End keys select the page. Vertical
+touch scrolling remains native. Inactive pages are inert and hidden from assistive
+technology; each active page retains its simulation label and a real destination.
+CSS transforms provide the stack motion, with immediate changes under reduced motion.
+
 ## 12. Accessibility and responsive requirements
 
 - Include skip navigation, semantic landmarks, an ordered heading hierarchy, and visible keyboard focus.
